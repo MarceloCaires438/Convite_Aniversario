@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Dev Birthday</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a0a23;
+            color: #f8f8f8;
+            text-align: center;
+            padding: 20px;
+        }
+        .convite {
+            background-color: #1e1e3f;
+            border: 2px solid #6140ef;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(97, 64, 239, 0.4);
+        }
+        h1 {
+            color: #f8d847;
+            text-shadow: 0 0 5px #6140ef;
+        }
+        .code-block {
+            background-color: #2d2b55;
+            padding: 15px;
+            border-left: 3px solid #f8d847;
+            text-align: left;
+            margin: 20px 0;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .destaque {
+            color: #f8d847;
+            font-weight: bold;
+        }
+        .emoji {
+            font-size: 24px;
+        }
+        button {
+            background-color: #6140ef;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #f8d847;
+            color: #0a0a23;
+        }
+    </style>
+</head>
+<body>
+    <div class="convite">
+        <div class="emoji">🎂 🚀 💻</div>
+        <h1>&lt;Convite para meu Aniversário/&gt;</h1>
+        
+        <div class="code-block">
+            <span style="color: #5af78e">console</span>.<span style="color: #57c7ff">log</span>(<span style="color: #f8d847">"Você está convidado(a) para minha festa!"</span>);<br><br>
+            
+            <span style="color: #ff6ac1">const</span> data = <span style="color: #f8d847">"03/05/2025 (sábado)</span>; <span style="color: #5af78e">// Dia do Bug... digo, do Evento!</span><br>
+            <span style="color: #ff6ac1">const</span> horario = <span style="color: #f8d847">"18:00"</span>; <span style="color: #5af78e">// Horário em UTC-3</span><br>
+            <span style="color: #ff6ac1">const</span> local = <span style="color: #f8d847">"Minha Casa"</span>;<br>
+            <span style="color: #ff6ac1">const</span> endereco = <span style="color: #f8d847">"Rua: Salvador Donófrio, 58, Centro, Guariba-SP"</span>;<br><br>            
+            <span style="color: #5af78e">// Traga seu kit churrasco(1 Kg de carne e o que beber)!</span><br>
+        </div>
+        
+        <p>Sua presença é o <span class="destaque">ponto e vírgula</span> que preciso para tornar esse dia perfeito!</p>
+        <p class="emoji">☕ 🎮 ⌨️</p>              
+        <p><small>PS: Teremos música flashback 80/90 e karaoke para tornar a noite melhor ainda!</small></p>
+    </div>
+	<form id="confirmacaoForm">
+    <input type="text" id="nome" placeholder="Seu nome" required>
+    <select id="presenca" required>
+        <option value="">Vai comparecer?</option>
+        <option value="sim">Sim!</option>
+        <option value="nao">Não poderei</option>
+    </select>
+    <button type="submit">Enviar</button>
+</form>
+<div id="resposta"></div>
+
+<script>
+const form = document.getElementById('confirmacaoForm');
+const respostaDiv = document.getElementById('resposta');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Substitua pela SUA URL do Google Apps Script
+    const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbxXg3j2be11EZBlbMFXDG4Dy6TP4q8GOyXCuAgOm3LXbc4Db9qPURkuFY86EKuNJHh-/exec";
+    
+    const dados = {
+        nome: document.getElementById('nome').value,
+        presenca: document.getElementById('presenca').value
+    };
+
+    try {
+        const response = await fetch(URL_SCRIPT, {
+            method: 'POST',
+            body: JSON.stringify(dados)
+        });
+        
+        const resultado = await response.json();
+        respostaDiv.innerHTML = resultado.mensagem;
+        form.reset(); // Limpa o formulário
+    } catch (erro) {
+        respostaDiv.innerHTML = "Erro ao enviar. Tente novamente!";
+    }
+});
+</script>
+</body>
+</html>
